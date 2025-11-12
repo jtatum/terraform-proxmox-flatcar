@@ -1,0 +1,31 @@
+# Proxmox Connection Configuration
+proxmox_api_url          = "https://your-proxmox-host:8006/api2/json"
+proxmox_api_token_id     = "user@pam!token-name"
+proxmox_api_token_secret = "your-api-token-secret-here"
+proxmox_tls_insecure     = true  # Set to false if using valid SSL certificate
+proxmox_node             = "your-node-name"
+
+# SSH Configuration
+# ssh_public_key = "ssh-rsa AAAAB3... user@host"  # Optional: override SSH key (defaults to ~/.ssh/id_rsa.pub)
+
+# VM Configuration
+vm_id              = 123  # Unique VM ID
+vm_name            = "flatcar-vm"
+flatcar_image_url  = "https://stable.release.flatcar-linux.net/amd64-usr/current/flatcar_production_proxmoxve_image.img"
+
+# VM Resources
+vm_cores   = 2
+vm_memory  = 4096  # MB
+
+# Storage and Network
+storage_pool    = "local-lvm"
+network_bridge  = "vmbr0"
+network_vlan    = null  # Set to a number for VLAN tagging (e.g., 4)
+
+# Network Configuration
+vm_ip_config = "ip=dhcp"  # or "ip=192.168.1.100/24,gw=192.168.1.1"
+
+# Start on boot
+vm_onboot = false
+
+# Note: Butane configuration is templated from butane-config.yaml.tpl with SSH key injection
