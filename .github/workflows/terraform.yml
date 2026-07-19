@@ -1,0 +1,46 @@
+name: Terraform
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  terraform:
+    name: fmt / validate / tflint
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_wrapper: false
+
+      - name: Terraform fmt
+        run: terraform fmt -check -recursive -diff
+
+      - name: Terraform init (module)
+        run: terraform init -backend=false
+
+      - name: Terraform validate (module)
+        run: terraform validate
+
+      - name: Terraform init (examples/basic)
+        run: terraform init -backend=false
+        working-directory: examples/basic
+
+      - name: Terraform validate (examples/basic)
+        run: terraform validate
+        working-directory: examples/basic
+
+      - name: Setup TFLint
+        uses: terraform-linters/setup-tflint@v4
+
+      - name: TFLint
+        run: |
+          tflint --init
+          tflint --recursive
