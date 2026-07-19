@@ -27,13 +27,13 @@ variable "proxmox_node" {
 }
 
 variable "ssh_public_key" {
-  description = "SSH public key for VM access (defaults to reading from ~/.ssh/id_rsa.pub). This value is passed to the Butane template as ${ssh_public_key} for custom templates."
+  description = "SSH public key for VM access (defaults to reading from ~/.ssh/id_rsa.pub). This value is passed to the Butane template as `$${ssh_public_key}` for custom templates."
   type        = string
   default     = ""
 }
 
 variable "butane_template_path" {
-  description = "Path to custom Butane template file. If not provided, uses the default template bundled with the module. The template receives ${ssh_public_key} as a variable."
+  description = "Path to custom Butane template file. If not provided, uses the default template bundled with the module. The template receives `$${ssh_public_key}` as a variable."
   type        = string
   default     = ""
 }
