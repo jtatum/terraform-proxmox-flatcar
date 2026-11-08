@@ -215,7 +215,7 @@ module "flatcar_vm" {
 }
 ```
 
-Your template file will receive the `${ssh_public_key}` variable automatically. Example custom template:
+Your template file will receive the `${ssh_public_key}` and `${vm_name}` variables automatically. Example custom template:
 
 ```yaml
 variant: flatcar

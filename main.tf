@@ -26,6 +26,7 @@ provider "proxmox" {
 # Read Butane configuration from template
 # Template variables available to Butane templates:
 #   - ssh_public_key: SSH public key for VM access
+#   - vm_name: VM name, used as the guest hostname
 locals {
   ssh_public_key = var.ssh_public_key != "" ? var.ssh_public_key : trimspace(file("~/.ssh/id_rsa.pub"))
 
@@ -34,6 +35,7 @@ locals {
 
   butane_config = templatefile(local.template_path, {
     ssh_public_key = local.ssh_public_key
+    vm_name        = var.vm_name
   })
 }
 

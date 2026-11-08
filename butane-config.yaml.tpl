@@ -10,7 +10,7 @@ storage:
     - path: /etc/hostname
       mode: 0644
       contents:
-        inline: flatcar-vm
+        inline: ${vm_name}
     - path: /home/core/welcome.txt
       mode: 0644
       user:

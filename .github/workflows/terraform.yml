@@ -29,6 +29,9 @@ jobs:
       - name: Terraform validate (module)
         run: terraform validate
 
+      - name: Terraform test (module, mocked providers)
+        run: terraform test
+
       - name: Terraform init (examples/basic)
         run: terraform init -backend=false
         working-directory: examples/basic
