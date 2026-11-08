@@ -94,3 +94,16 @@ run "custom_butane_template" {
     error_message = "butane_template_path was not used, or did not receive ssh_public_key"
   }
 }
+
+run "hostname_follows_vm_name" {
+  command = plan
+
+  variables {
+    vm_name = "worker-01"
+  }
+
+  assert {
+    condition     = strcontains(data.ct_config.ignition.content, "inline: worker-01") && !strcontains(data.ct_config.ignition.content, "inline: flatcar-vm")
+    error_message = "the guest hostname should match vm_name"
+  }
+}

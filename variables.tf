@@ -33,7 +33,7 @@ variable "ssh_public_key" {
 }
 
 variable "butane_template_path" {
-  description = "Path to custom Butane template file. If not provided, uses the default template bundled with the module. The template receives `$${ssh_public_key}` as a variable."
+  description = "Path to custom Butane template file. If not provided, uses the default template bundled with the module. The template receives `$${ssh_public_key}` and `$${vm_name}` as variables."
   type        = string
   default     = ""
 }
